@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Smart Kitchen Garden Team",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 9.6, "left": 168.04, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -30, "left": -170, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_soil",
+      "top": 94.7,
+      "left": -278.6,
+      "attrs": { "label": "Soil Moisture" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_tds",
+      "top": 190.7,
+      "left": -278.6,
+      "attrs": { "label": "TDS Sensor" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_tx",
+      "top": 92.4,
+      "left": 464.6,
+      "attrs": { "color": "blue", "label": "TX" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_tx",
+      "top": 167.15,
+      "left": 384,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -204.8,
+      "left": 303.2,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:5V", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v155.1", "h414.3" ] ],
+    [ "pot_soil:VCC", "esp:5V", "red", [] ],
+    [ "pot_soil:GND", "esp:GND.1", "black", [] ],
+    [ "pot_soil:SIG", "esp:34", "green", [] ],
+    [ "pot_tds:VCC", "esp:5V", "red", [] ],
+    [ "pot_tds:GND", "esp:GND.1", "black", [] ],
+    [ "pot_tds:SIG", "esp:35", "green", [] ],
+    [ "esp:2", "r_tx:1", "blue", [] ],
+    [ "r_tx:2", "led_tx:A", "blue", [] ],
+    [ "led_tx:C", "esp:GND.2", "black", [] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "v19.2", "h-134.55" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-163.2", "v374.5" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "v9.8", "h-28.8", "v230.4" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "v9.9", "h-19.2", "v192" ] ]
+  ],
+  "dependencies": {}
+}

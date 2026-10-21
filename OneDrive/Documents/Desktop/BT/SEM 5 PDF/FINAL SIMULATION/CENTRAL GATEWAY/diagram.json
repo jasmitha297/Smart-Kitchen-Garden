@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "author": "Smart Kitchen Garden Team",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 150, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -214.4,
+      "left": 293.6,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_pump",
+      "top": 249.8,
+      "left": 432,
+      "attrs": { "label": "Spray Pump" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_v1",
+      "top": -40,
+      "left": -100,
+      "attrs": { "color": "green", "label": "Valve 1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_v2",
+      "top": 30,
+      "left": -100,
+      "attrs": { "color": "green", "label": "Valve 2" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_v3",
+      "top": 100,
+      "left": -100,
+      "attrs": { "color": "green", "label": "Valve 3" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_v4",
+      "top": 170,
+      "left": -100,
+      "attrs": { "color": "green", "label": "Valve 4" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_alert",
+      "top": -120,
+      "left": -100,
+      "attrs": { "color": "red", "label": "TDS Alert" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 240,
+      "left": -100,
+      "attrs": { "hasLocalSound": "true" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:VCC", "esp:5V", "red", [] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [] ],
+    [ "lcd1:SDA", "esp:21", "green", [] ],
+    [ "lcd1:SCL", "esp:22", "green", [] ],
+    [ "relay_pump:VCC", "esp:5V", "red", [] ],
+    [ "relay_pump:GND", "esp:GND.3", "black", [] ],
+    [ "relay_pump:IN", "esp:26", "blue", [] ],
+    [ "led_v1:A", "esp:18", "green", [] ],
+    [ "led_v1:C", "esp:GND.1", "black", [] ],
+    [ "led_v2:A", "esp:19", "green", [] ],
+    [ "led_v2:C", "esp:GND.1", "black", [] ],
+    [ "led_v3:A", "esp:23", "green", [] ],
+    [ "led_v3:C", "esp:GND.1", "black", [] ],
+    [ "led_v4:A", "esp:5", "green", [] ],
+    [ "led_v4:C", "esp:GND.1", "black", [] ],
+    [ "led_alert:A", "esp:27", "red", [] ],
+    [ "led_alert:C", "esp:GND.1", "black", [] ],
+    [ "bz1:1", "esp:13", "purple", [] ],
+    [ "bz1:2", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
